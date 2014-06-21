@@ -15,7 +15,6 @@ Highlight individual parts of your application using iShowcase
 * ARC
 
 ## Installation
- 
 * Add the `iShowcase.h` and `iShowcase.m` files to your project
 * Add `#include "iShowcase.h"` to your ViewController
 
@@ -37,7 +36,6 @@ initWithTitleColor: (UIColor*) titleColor detailsColor: (UIColor*) detailsColor;
 ``` objective-c
 showcase.delegate = self;
 ```
-
 #### Delegate Methods
 
 ``` objective-c
@@ -63,7 +61,6 @@ setTitleFont: (UIFont*) font;
 setDetailsFont: (UIFont*) font;
 setTitleColor: (UIColor*) color;
 setDetailsColor: (UIColor*) color;
-setHighlightColor:(UIColor*) highlightColor;
 ```
 
 ## Credits
