@@ -61,6 +61,7 @@ setTitleFont: (UIFont*) font;
 setDetailsFont: (UIFont*) font;
 setTitleColor: (UIColor*) color;
 setDetailsColor: (UIColor*) color;
+setHighlightColor:(UIColor*) highlightColor;
 ```
 
 ## Credits
