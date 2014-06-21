@@ -33,6 +33,7 @@
 - (id) initWithTitleColor: (UIColor*) titleColor detailsColor: (UIColor*) detailsColor;
 - (id) initWithTitleFont:(UIFont*) titleFont detailsFont:(UIFont*) detailsFont titleColor:(UIColor*) titleColor detailsColor:(UIColor*) detailsColor;
 - (void) setBackgroundColor:(UIColor *)backgroundColor;
+- (void) setHighlightColor:(UIColor*) highlightColor;
 - (void) setTitleFont: (UIFont*) font;
 - (void) setDetailsFont: (UIFont*) font;
 - (void) setTitleColor: (UIColor*) color;

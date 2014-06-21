@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *tv_backgroundColor;
 @property (weak, nonatomic) IBOutlet UITextField *tv_titleColor;
 @property (weak, nonatomic) IBOutlet UITextField *tv_detailsColor;
+@property (weak, nonatomic) IBOutlet UITextField *tv_highlightColor;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_default;
 @property (weak, nonatomic) IBOutlet UIButton *btn_multiple;
