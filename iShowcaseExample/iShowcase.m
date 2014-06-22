@@ -85,7 +85,7 @@
 
 -(void) setupShowcaseForTarget:(id)target title:(NSString *)title details:(NSString *)details
 {
-    [self setupShowcaseForLocation:CGRectMake([target frame].origin.x, [target frame].origin.y, [target bounds].size.width, [target bounds].size.height) title:title details:details];
+    [self setupShowcaseForLocation:[target convertRect:[target bounds] toView:containerView] title:title details:details];
 }
 
 - (void) setupShowcaseForLocation:(CGRect)location title:(NSString *)title details:(NSString *)details
@@ -166,8 +166,16 @@
 - (void) setupTextWithTitle:(NSString *)title detailsText:(NSString *)details
 {
     CGSize titleSize = [title sizeWithAttributes:@{NSFontAttributeName: self.titleFont}];
+    titleSize.width = [UIScreen mainScreen].bounds.size.width;
     CGSize detailsSize = [details sizeWithAttributes:@{NSFontAttributeName: self.detailsFont}];
+    detailsSize.width = titleSize.width;
     NSArray *textPosition = [self getBestPositionOfTitleWithSize:titleSize detailsSize:detailsSize];
+    
+    if (self.region == 1 || self.region == 3)
+    {
+        titleSize.width -= showcaseRect.size.width;
+        detailsSize.width -= showcaseRect.size.width;
+    }
     
     if (self.region != 2)
     {
@@ -180,15 +188,26 @@
         titleLabel = [[UILabel alloc] initWithFrame:[(NSValue*) [textPosition objectAtIndex:1] CGRectValue]];
     }
     
+    titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    titleLabel.numberOfLines = 0;
     titleLabel.text = title;
     titleLabel.textAlignment = self.titleAlignment;
     titleLabel.textColor = self.titleColor;
     titleLabel.font = self.titleFont;
+
     
+    detailsLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    detailsLabel.numberOfLines = 0;
     detailsLabel.text = details;
     detailsLabel.textAlignment = self.detailsAlignment;
     detailsLabel.textColor = self.detailsColor;
     detailsLabel.font = self.detailsFont;
+    
+    [titleLabel sizeToFit];
+    [detailsLabel sizeToFit];
+    
+    titleLabel.frame = CGRectMake([containerView bounds].size.width / 2.0f - titleLabel.frame.size.width / 2.0f, titleLabel.frame.origin.y, titleLabel.frame.size.width, titleLabel.frame.size.height);
+    detailsLabel.frame = CGRectMake([containerView bounds].size.width / 2.0f - detailsLabel.frame.size.width / 2.0f, detailsLabel.frame.origin.y, detailsLabel.frame.size.width, detailsLabel.frame.size.height);
 }
 
 - (void) calculateRegion
@@ -219,6 +238,7 @@
 - (NSArray*) getBestPositionOfTitleWithSize:(CGSize)titleSize detailsSize:(CGSize)detailsSize
 {
     CGRect rect0, rect1;
+    
     switch (self.region)
     {
         case 0: // Top Region
@@ -227,7 +247,7 @@
             break;
         case 1: // Left Region
             rect0 = CGRectMake(0, [containerView bounds].size.height / 2.0f, titleSize.width, titleSize.height);
-            rect1 = CGRectMake([containerView bounds].size.width / 2.0f - detailsSize.width / 2.0f, rect0.origin.y + rect0.size.height + detailsSize.height / 2.0f, detailsSize.width, detailsSize.height);
+            rect1 = CGRectMake(0, rect0.origin.y + rect0.size.height + detailsSize.height / 2.0f, detailsSize.width, detailsSize.height);
             break;
         case 2: // Bottom Region
             rect0 = CGRectMake([containerView bounds].size.width / 2.0f - detailsSize.width / 2.0f , [containerView bounds].size.height - detailsSize.height * 2.0f, detailsSize.width, detailsSize.height);
@@ -235,7 +255,7 @@
             break;
         case 3: // Right Region
             rect0 = CGRectMake([containerView bounds].size.width - titleSize.width, [containerView bounds].size.height / 2.0f, titleSize.width, titleSize.height);
-            rect1 = CGRectMake([containerView bounds].size.width / 2.0f - detailsSize.width / 2.0f, rect0.origin.y + rect0.size.height + detailsSize.height / 2.0f, detailsSize.width, detailsSize.height);
+            rect1 = CGRectMake([containerView bounds].size.width - detailsSize.width, rect0.origin.y + rect0.size.height + detailsSize.height / 2.0f, detailsSize.width, detailsSize.height);
             break;
     }
 
