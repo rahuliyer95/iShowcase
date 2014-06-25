@@ -49,19 +49,26 @@ iShowcaseDismissed // Called When Showcase is removed
 [showcase show];
 
 // For Custom Location
-[showcase setupShowcaseForLocation:(CGRect location) title:(NSString *)#details:(NSString *)];
+[showcase setupShowcaseForLocation:(CGRect location) title:(NSString *) details:(NSString *)];
 [showcase show];
 ```
 
 #### Customizations
 
 ``` objective-c
+
+// Constants
+const int TYPE_CIRCLE = 0;
+const int TYPE_RECTANGLE = 1;
+
 setBackgroundColor: (UIColor *) backgroundColor;
 setTitleFont: (UIFont*) font;
 setDetailsFont: (UIFont*) font;
 setTitleColor: (UIColor*) color;
 setDetailsColor: (UIColor*) color;
 setHighlightColor:(UIColor*) highlightColor;
+setIType: (int) type;
+setRadius: (CGFloat) radius;
 ```
 
 ## Credits

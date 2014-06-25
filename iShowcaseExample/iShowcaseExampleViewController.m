@@ -80,6 +80,7 @@ bool custom = false;
     }
     
     custom = true;
+    [showcase setIType:TYPE_CIRCLE];
     [showcase setupShowcaseForTarget:btn_custom title:@"Custom" details:@"This is custom iShowcase"];
     [showcase show];
 }

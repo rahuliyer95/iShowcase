@@ -39,6 +39,8 @@
 - (void) setTitleColor: (UIColor*) color;
 - (void) setDetailsColor: (UIColor*) color;
 - (void) setContainerView: (id) container;
+- (void) setIType: (int) type;
+- (void) setRadius: (CGFloat) radius;
 - (void) setupShowcaseForTarget: (id) target title: (NSString*) title details: (NSString*) details;
 - (void) setupShowcaseForLocation: (CGRect) location title: (NSString*) title details: (NSString*) details;
 - (void) show;
@@ -46,3 +48,6 @@
 + (UIColor*) colorFromHexString : (NSString*) hexCode;
 
 @end
+
+extern const int TYPE_CIRCLE;
+extern const int TYPE_RECTANGLE;

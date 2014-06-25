@@ -39,6 +39,8 @@
 @property (nonatomic) UIFont *detailsFont;
 @property (nonatomic) NSTextAlignment titleAlignment;
 @property (nonatomic) NSTextAlignment detailsAlignment;
+@property (nonatomic) CGFloat radius;
+@property (nonatomic) int iType;
 @property (nonatomic, retain) id containerView;
 
 @property (nonatomic) int region;
@@ -47,6 +49,9 @@
 @end
 
 @implementation iShowcase
+
+int const TYPE_CIRCLE = 0;
+int const TYPE_RECTANGLE = 1;
 
 @synthesize delegate;
 @synthesize showcaseImageView;
@@ -80,6 +85,8 @@
     self.highlightColor = [iShowcase colorFromHexString:@"#1397C5"];
     self.titleAlignment = NSTextAlignmentCenter;
     self.detailsAlignment = NSTextAlignmentCenter;
+    self.iType = TYPE_RECTANGLE;
+    self.radius = 25.0f;
     return [self initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 }
 
@@ -134,30 +141,51 @@
     CGContextSetFillColorWithColor(context, [self.backgroundColor CGColor]);
     CGContextFillRect(context, [containerView bounds]);
     
-    // Outer Highlight
-    CGRect highlightRect = CGRectMake(showcaseRect.origin.x - 15, showcaseRect.origin.y - 15, showcaseRect.size.width + 30, showcaseRect.size.height + 30);
-    CGContextSetShadowWithColor(context, CGSizeZero, 30.0f, self.highlightColor.CGColor);
-    CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
-    CGContextSetStrokeColorWithColor(context, self.highlightColor.CGColor);
-    CGContextAddPath(context, [UIBezierPath bezierPathWithRect:highlightRect].CGPath);
-    CGContextDrawPath(context, kCGPathFillStroke);
+    if (self.iType == TYPE_RECTANGLE )
+    {
+        // Outer Highlight
+        CGRect highlightRect = CGRectMake(showcaseRect.origin.x - 15, showcaseRect.origin.y - 15, showcaseRect.size.width + 30, showcaseRect.size.height + 30);
+        CGContextSetShadowWithColor(context, CGSizeZero, 30.0f, self.highlightColor.CGColor);
+        CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
+        CGContextSetStrokeColorWithColor(context, self.highlightColor.CGColor);
+        CGContextAddPath(context, [UIBezierPath bezierPathWithRect:highlightRect].CGPath);
+        CGContextDrawPath(context, kCGPathFillStroke);
     
-    // Inner Highlight
-    CGContextSetLineWidth(context, 3.0f);
-    CGContextSetShadowWithColor(context, CGSizeZero, 40.0f, self.highlightColor.CGColor);
-    CGContextSetStrokeColorWithColor(context, self.highlightColor.CGColor);
-    CGContextSetFillColorWithColor(context, self.highlightColor.CGColor);
-    CGContextAddPath(context, [UIBezierPath bezierPathWithRect:showcaseRect].CGPath);
-    CGContextDrawPath(context, kCGPathFillStroke);
-    UIImage *showcase = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+        // Inner Highlight
+        CGContextSetLineWidth(context, 3.0f);
+        CGContextAddPath(context, [UIBezierPath bezierPathWithRect:showcaseRect].CGPath);
+        CGContextDrawPath(context, kCGPathFillStroke);
+        
+        UIImage *showcase = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
 
-    // Clear Region
-    UIGraphicsBeginImageContext(showcase.size);
-    [showcase drawAtPoint:CGPointZero];
-    context = UIGraphicsGetCurrentContext();
-    CGContextClearRect(context, showcaseRect);
-    
+        // Clear Region
+        UIGraphicsBeginImageContext(showcase.size);
+        [showcase drawAtPoint:CGPointZero];
+        context = UIGraphicsGetCurrentContext();
+        CGContextClearRect(context, showcaseRect);
+    }
+    else if (self.iType == TYPE_CIRCLE)
+    {
+        CGPoint center = CGPointMake(showcaseRect.origin.x + showcaseRect.size.width / 2.0f, showcaseRect.origin.y + showcaseRect.size.height / 2.0f);
+        
+        // Draw Highlight
+        CGContextSetLineWidth(context, 2.54f);
+        CGContextSetShadowWithColor(context, CGSizeZero, 30.0f, self.highlightColor.CGColor);
+        CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
+        CGContextSetStrokeColorWithColor(context, self.highlightColor.CGColor);
+        CGContextAddArc(context, center.x, center.y, self.radius * 2.0f, 0, 2 * M_PI, 0);
+        CGContextDrawPath(context, kCGPathFillStroke);
+        CGContextAddArc(context, center.x, center.y, self.radius, 0, 2 * M_PI, 0);
+        CGContextDrawPath(context, kCGPathFillStroke);
+        
+        // Clear Circle
+        CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+        CGContextSetBlendMode(context, kCGBlendModeClear);
+        CGContextAddArc(context, center.x, center.y, self.radius - 0.54, 0, 2 * M_PI, 0);
+        CGContextDrawPath(context, kCGPathFill);
+        CGContextSetBlendMode(context, kCGBlendModeNormal);
+    }
     showcaseImageView = [[UIImageView alloc] initWithImage:UIGraphicsGetImageFromCurrentImageContext()];
     UIGraphicsEndImageContext();
     [showcaseImageView setAlpha:0.75f];
