@@ -136,7 +136,7 @@ int const TYPE_RECTANGLE = 1;
 - (void) setupBackground
 {
     // Black Background
-    UIGraphicsBeginImageContext([[UIScreen mainScreen] bounds].size);
+    UIGraphicsBeginImageContextWithOptions([[UIScreen mainScreen] bounds].size, NO, [UIScreen mainScreen].scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [self.backgroundColor CGColor]);
     CGContextFillRect(context, [containerView bounds]);
