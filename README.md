@@ -2,11 +2,6 @@
 
 Highlight individual parts of your application using iShowcase
 
-[![CI Status](http://img.shields.io/travis/rahuliyer95/iShowcase.svg?style=flat)](https://travis-ci.org/rahuliyer95/iShowcase)
-[![Version](https://img.shields.io/cocoapods/v/iShowcase.svg?style=flat)](http://cocoadocs.org/docsets/iShowcase)
-[![License](https://img.shields.io/cocoapods/l/iShowcase.svg?style=flat)](http://cocoadocs.org/docsets/iShowcase)
-[![Platform](https://img.shields.io/cocoapods/p/iShowcase.svg?style=flat)](http://cocoadocs.org/docsets/iShowcase)
-
 ## Screenshots
 
 <img style="float : left" src="screenshot/1.png" width="320" height="568">

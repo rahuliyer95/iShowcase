@@ -1,5 +1,0 @@
-reference: http://www.objc.io/issue-6/travis-ci.html
-language: objective-c
-cache: bundler
-script:
-- xctool test -workspace Example/iShowcase.xcworkspace -scheme iShowcase -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
