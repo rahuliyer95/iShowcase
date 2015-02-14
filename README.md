@@ -6,7 +6,8 @@ Highlight individual parts of your application using iShowcase
 
 <img style="float : left" src="screenshot/1.png" width="320" height="568">
 <img style="float : right" src="screenshot/2.png" width="320" height="568">
-<img src="screenshot/3.png" width="320" height="568">
+<img style="float : left" src="screenshot/3.png" width="320" height="568">
+<img style="float : right" src="screenshot/4.png" width="320" height="568">
 
 ## Requirements
 * Xcode 5 or higher
@@ -35,7 +36,6 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ``` objective-c
 // Create Object of iShowcase
 iShowcase *showcase = [[iShowcase alloc] init];
-[showcase setContainerView: self.view];
 
 // Other init Methods
 initWithTitleFont: (UIFont*) titleFont detailsFont: (UIFont*) detailsFont;

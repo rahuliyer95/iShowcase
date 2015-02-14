@@ -26,6 +26,7 @@
 @synthesize btn_table;
 @synthesize tableView;
 @synthesize tableData;
+@synthesize barButton;
 
 @synthesize showcase;
 
@@ -54,7 +55,7 @@ bool custom = false;
 {
     showcase = [[iShowcase alloc] init];
     showcase.delegate = self;
-    [showcase setContainerView:self.view];
+//    [showcase setContainerView:self.view];
 }
 
 - (IBAction)custom:(id)sender
@@ -101,6 +102,12 @@ bool custom = false;
 {
     CGRect tableRow = [tableView convertRect:[tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] toView:[tableView superview]];
     [showcase setupShowcaseForLocation:tableRow title:@"UITableView" details:@"This is Custom Position Example"];
+    [showcase show];
+}
+
+- (IBAction)barButtonExample:(id)sender
+{
+    [showcase setupShowcaseForTarget:[barButton valueForKey:@"view"] title:@"Bar Button Example" details:@"This example highlights the UIBarButtonItem"];
     [showcase show];
 }
 

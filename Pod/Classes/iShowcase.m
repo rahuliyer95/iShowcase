@@ -87,6 +87,7 @@ int const TYPE_RECTANGLE = 1;
     self.detailsAlignment = NSTextAlignmentCenter;
     self.iType = TYPE_RECTANGLE;
     self.radius = 25.0f;
+    self.containerView = [[[UIApplication sharedApplication] delegate] window];
     return [self initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 }
 
@@ -110,10 +111,24 @@ int const TYPE_RECTANGLE = 1;
 
 -(void) show
 {
-    [self showInContainer:containerView];
+    self.alpha = 1.0f;
+    for (UIView* view in [containerView subviews])
+    {
+        [view setUserInteractionEnabled:NO];
+    }
+    
+    [UIView transitionWithView:containerView
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        [containerView addSubview:self];
+                    }
+                    completion:^(BOOL finished) {
+                        [delegate iShowcaseShown];
+                    }];
 }
 
--(void) showInContainer:(id)container
+-(void) showInContainer:(id)container DEPRECATED_ATTRIBUTE
 {
     containerView = container;
     self.alpha = 1.0f;

@@ -23,4 +23,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *barButton;
+
 @end

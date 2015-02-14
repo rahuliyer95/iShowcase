@@ -38,13 +38,13 @@
 - (void) setDetailsFont: (UIFont*) font;
 - (void) setTitleColor: (UIColor*) color;
 - (void) setDetailsColor: (UIColor*) color;
-- (void) setContainerView: (id) container;
+- (void) setContainerView: (id) container DEPRECATED_ATTRIBUTE;
 - (void) setIType: (int) type;
 - (void) setRadius: (CGFloat) radius;
 - (void) setupShowcaseForTarget: (id) target title: (NSString*) title details: (NSString*) details;
 - (void) setupShowcaseForLocation: (CGRect) location title: (NSString*) title details: (NSString*) details;
 - (void) show;
-- (void) showInContainer: (id) container;
+- (void) showInContainer: (id) container DEPRECATED_ATTRIBUTE;
 + (UIColor*) colorFromHexString : (NSString*) hexCode;
 
 @end
