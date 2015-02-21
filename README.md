@@ -6,6 +6,7 @@ Highlight individual parts of your application using iShowcase
 [![Version](https://img.shields.io/cocoapods/v/iShowcase.svg?style=flat)](http://cocoadocs.org/docsets/iShowcase)
 [![License](https://img.shields.io/cocoapods/l/iShowcase.svg?style=flat)](http://cocoadocs.org/docsets/iShowcase)
 [![Platform](https://img.shields.io/cocoapods/p/iShowcase.svg?style=flat)](http://cocoadocs.org/docsets/iShowcase)
+[![Issues](https://img.shields.io/github/issues/rahuliyer95/iShowcase.svg?style=flat)](http://www.github.com/rahuliyer95/iShowcase/issues?state=open)
 
 ## Screenshots
 
@@ -25,12 +26,14 @@ Highlight individual parts of your application using iShowcase
 iShowcase is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "iShowcase"
+    pod "iShowcase", "~> 1.2"
 
 or
 
 * Add the `iShowcase.h` and `iShowcase.m` files to your project
 * Add `#include "iShowcase.h"` to your ViewController
+
+## [Documentation](http://rahuliyer95.github.io/iShowcase/docs)
 
 ## Usage
 
@@ -60,12 +63,19 @@ iShowcaseDismissed // Called When Showcase is removed
 
 #### Displaying iShowcase
 ``` objective-c
-[showcase setupShowcaseForTarget:(view_to_target) title:(NSString *) details:<#(NSString *)];
+[showcase setupShowcaseForView:(UIView *) title:(NSString *) details:(NSString *)];
 [showcase show];
 
 // For Custom Location
 [showcase setupShowcaseForLocation:(CGRect location) title:(NSString *) details:(NSString *)];
 [showcase show];
+
+// Methods for other UI Elements
+
+setupShowcaseForBarButtonItem:(UIBarButtonItem *) withTitle:(NSString *) details:(NSString *)
+setupShowcaseForTableView:(UITableView *) withTitle:(NSString *) details:(NSString *)
+setupShowcaseForTableView:(UITableView *) withIndexOfItem:(NSUInteger) sectionOfItem:(NSUInteger) title:(NSString *) details:(NSString *)
+
 ```
 
 #### Customizations
@@ -84,6 +94,7 @@ setDetailsColor: (UIColor*) color;
 setHighlightColor:(UIColor*) highlightColor;
 setIType: (int) type;
 setRadius: (CGFloat) radius;
+setSingleShotId: (long) singleShotId;
 ```
 
 ## Credits
