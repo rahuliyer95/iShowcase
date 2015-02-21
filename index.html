@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>iShowcase by rahuliyer95</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>iShowcase</h1>
+        <h2>Highlight the best parts of your application</h2>
+        <a href="https://github.com/rahuliyer95/iShowcase" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="ishowcase" class="anchor" href="#ishowcase" aria-hidden="true"><span class="octicon octicon-link"></span></a>iShowcase</h1>
+
+<p>Highlight individual parts of your application using iShowcase</p>
+
+<p><a href="https://travis-ci.org/rahuliyer95/iShowcase"><img src="http://img.shields.io/travis/rahuliyer95/iShowcase.svg?style=flat" alt="CI Status"></a>
+<a href="http://cocoadocs.org/docsets/iShowcase"><img src="https://img.shields.io/cocoapods/v/iShowcase.svg?style=flat" alt="Version"></a>
+<a href="http://cocoadocs.org/docsets/iShowcase"><img src="https://img.shields.io/cocoapods/l/iShowcase.svg?style=flat" alt="License"></a>
+<a href="http://cocoadocs.org/docsets/iShowcase"><img src="https://img.shields.io/cocoapods/p/iShowcase.svg?style=flat" alt="Platform"></a></p>
+
+<h2>
+<a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots</h2>
+
+<p><img src="https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/screenshot/1.png" width="320" height="568">
+<img src="https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/screenshot/2.png" width="320" height="568">
+<img width="320" height="568">
+<img src="https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/screenshot/4.png" width="320" height="568"></p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Xcode 5 or higher</li>
+<li>Apple LLVM compiler</li>
+<li>iOS 6.0 or higher</li>
+<li>ARC</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>iShowcase is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
+it, simply add the following line to your Podfile:</p>
+
+<pre><code>pod "iShowcase"
+</code></pre>
+
+<p>or</p>
+
+<ul>
+<li>Add the <code>iShowcase.h</code> and <code>iShowcase.m</code> files to your project</li>
+<li>Add <code>#include "iShowcase.h"</code> to your ViewController</li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To run the example project, clone the repo, and run <code>pod install</code> from the Example directory first.</p>
+
+<h4>
+<a id="creating-instance" class="anchor" href="#creating-instance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating Instance</h4>
+
+<div class="highlight highlight-objective-c"><pre><span class="pl-c">// Create Object of iShowcase</span>
+iShowcase *showcase = [[iShowcase <span class="pl-s3">alloc</span>] <span class="pl-s3">init</span>];
+
+<span class="pl-c">// Other init Methods</span>
+initWithTitleFont: (UIFont*) titleFont detailsFont: (UIFont*) detailsFont;
+initWithTitleColor: (UIColor*) titleColor detailsColor: (UIColor*) detailsColor;</pre></div>
+
+<h4>
+<a id="delegate" class="anchor" href="#delegate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Delegate</h4>
+
+<div class="highlight highlight-objective-c"><pre>showcase.delegate = self;</pre></div>
+
+<h4>
+<a id="delegate-methods" class="anchor" href="#delegate-methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Delegate Methods</h4>
+
+<div class="highlight highlight-objective-c"><pre>iShowcaseShown <span class="pl-c">// Called When Showcase is displayed</span>
+iShowcaseDismissed <span class="pl-c">// Called When Showcase is removed</span></pre></div>
+
+<h4>
+<a id="displaying-ishowcase" class="anchor" href="#displaying-ishowcase" aria-hidden="true"><span class="octicon octicon-link"></span></a>Displaying iShowcase</h4>
+
+<div class="highlight highlight-objective-c"><pre>[showcase <span class="pl-s3">setupShowcaseForTarget:</span>(view_to_target) <span class="pl-s3">title:</span>(<span class="pl-s3">NSString</span> *) <span class="pl-s3">details:</span>&lt;#(<span class="pl-s3">NSString</span> *)];
+[showcase <span class="pl-s3">show</span>];
+
+<span class="pl-c">// For Custom Location</span>
+[showcase <span class="pl-s3">setupShowcaseForLocation:</span>(<span class="pl-s3">CGRect</span> location) <span class="pl-s3">title:</span>(<span class="pl-s3">NSString</span> *) <span class="pl-s3">details:</span>(<span class="pl-s3">NSString</span> *)];
+[showcase <span class="pl-s3">show</span>];</pre></div>
+
+<h4>
+<a id="customizations" class="anchor" href="#customizations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customizations</h4>
+
+<div class="highlight highlight-objective-c"><pre>
+<span class="pl-c">// Constants</span>
+<span class="pl-s">const</span> <span class="pl-st">int</span> TYPE_CIRCLE = <span class="pl-c1">0</span>;
+<span class="pl-s">const</span> <span class="pl-st">int</span> TYPE_RECTANGLE = <span class="pl-c1">1</span>;
+
+setBackgroundColor: (UIColor *) backgroundColor;
+setTitleFont: (UIFont*) font;
+setDetailsFont: (UIFont*) font;
+setTitleColor: (UIColor*) color;
+setDetailsColor: (UIColor*) color;
+setHighlightColor:(UIColor*) highlightColor;
+setIType: (<span class="pl-st">int</span>) type;
+setRadius: (<span class="pl-s3">CGFloat</span>) radius;</pre></div>
+
+<h2>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>Inspired from <a href="https://github.com/amlcurran/Showcaseview">ShowcaseView</a> by <a href="https://github.com/amlcurran/">Alex Curran</a></p>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p>rahuliyer95, <a href="mailto:rahuliyer573@gmail.com">rahuliyer573@gmail.com</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>iShowcase is available under the MIT license. See the LICENSE file for more info.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/rahuliyer95/iShowcase/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/rahuliyer95/iShowcase/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/rahuliyer95/iShowcase"></a> is maintained by <a href="https://github.com/rahuliyer95">rahuliyer95</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
