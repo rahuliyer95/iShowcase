@@ -199,8 +199,12 @@ int const TYPE_RECTANGLE = 1;
     [UIView transitionWithView:containerView
         duration:0.5
         options:UIViewAnimationOptionTransitionCrossDissolve
-        animations:^{ [containerView addSubview:self]; }
-        completion:^(BOOL finished) { [delegate iShowcaseShown:self]; }];
+        animations:^{
+            [containerView addSubview:self];
+        }
+        completion:^(BOOL finished) {
+            [delegate iShowcaseShown:self];
+        }];
 }
 
 - (void)setupBackground {
@@ -272,10 +276,17 @@ int const TYPE_RECTANGLE = 1;
 
 - (void)setupTextWithTitle:(NSString *)title detailsText:(NSString *)details {
     CGSize titleSize =
-        [title sizeWithAttributes:@{NSFontAttributeName : self.titleFont}];
+        [[UIDevice currentDevice] systemVersion].floatValue < 7.0
+            ? [title sizeWithFont:self.titleFont]
+            : [title
+                  sizeWithAttributes:@{NSFontAttributeName : self.titleFont}];
     titleSize.width = [UIScreen mainScreen].bounds.size.width;
     CGSize detailsSize =
-        [details sizeWithAttributes:@{NSFontAttributeName : self.detailsFont}];
+        [[UIDevice currentDevice] systemVersion].floatValue < 7.0
+            ? [title sizeWithFont:self.detailsFont]
+            : [details sizeWithAttributes:@{
+                NSFontAttributeName : self.detailsFont
+            }];
     detailsSize.width = titleSize.width;
     NSArray *textPosition =
         [self getBestPositionOfTitleWithSize:titleSize detailsSize:detailsSize];
@@ -292,7 +303,7 @@ int const TYPE_RECTANGLE = 1;
         detailsLabel =
             [[UILabel alloc] initWithFrame:[(NSValue *)[textPosition
                                                objectAtIndex:1] CGRectValue]];
-    } else // Bottom Region
+    } else  // Bottom Region
     {
         detailsLabel =
             [[UILabel alloc] initWithFrame:[(NSValue *)[textPosition
@@ -341,19 +352,20 @@ int const TYPE_RECTANGLE = 1;
         initWithObjects:
             [NSNumber numberWithFloat:top *
                                       [[UIScreen mainScreen] bounds]
-                                          .size.width], // Top Region
+                                          .size.width],  // Top Region
             [NSNumber numberWithFloat:left *
                                       [[UIScreen mainScreen] bounds]
-                                          .size.height], // Left Region
+                                          .size.height],  // Left Region
             [NSNumber
-                numberWithFloat:
-                    ([[UIScreen mainScreen] bounds].size.height - bottom) *
-                    [[UIScreen mainScreen] bounds].size.width], // Bottom Region
+                numberWithFloat:([[UIScreen mainScreen] bounds].size.height -
+                                 bottom) *
+                                [[UIScreen mainScreen] bounds]
+                                    .size.width],  // Bottom Region
             [NSNumber
                 numberWithFloat:([[UIScreen mainScreen] bounds].size.width -
                                  right) *
                                 [[UIScreen mainScreen] bounds].size.height],
-            nil]; // Right Region
+            nil];  // Right Region
 
     int largest = 0;
 
@@ -371,41 +383,46 @@ int const TYPE_RECTANGLE = 1;
     CGRect rect0, rect1;
 
     switch (self.region) {
-    case 0: // Top Region
-        rect0 = CGRectMake(
-            [containerView bounds].size.width / 2.0f - titleSize.width / 2.0f,
-            titleSize.height + 64, titleSize.width, titleSize.height);
-        rect1 = CGRectMake(
-            [containerView bounds].size.width / 2.0f - detailsSize.width / 2.0f,
-            rect0.origin.y + rect0.size.height + detailsSize.height / 2.0f,
-            detailsSize.width, detailsSize.height);
-        break;
-    case 1: // Left Region
-        rect0 = CGRectMake(0, [containerView bounds].size.height / 2.0f,
-                           titleSize.width, titleSize.height);
-        rect1 = CGRectMake(0, rect0.origin.y + rect0.size.height +
-                                  detailsSize.height / 2.0f,
-                           detailsSize.width, detailsSize.height);
-        break;
-    case 2: // Bottom Region
-        rect0 = CGRectMake(
-            [containerView bounds].size.width / 2.0f - detailsSize.width / 2.0f,
-            [containerView bounds].size.height - detailsSize.height * 2.0f,
-            detailsSize.width, detailsSize.height);
-        rect1 = CGRectMake(
-            [containerView bounds].size.width / 2.0f - titleSize.width / 2.0f,
-            rect0.origin.y - rect0.size.height - titleSize.height / 2.0f,
-            titleSize.width, titleSize.height);
-        break;
-    case 3: // Right Region
-        rect0 = CGRectMake([containerView bounds].size.width - titleSize.width,
+        case 0:  // Top Region
+            rect0 = CGRectMake([containerView bounds].size.width / 2.0f -
+                                   titleSize.width / 2.0f,
+                               titleSize.height + 64, titleSize.width,
+                               titleSize.height);
+            rect1 = CGRectMake(
+                [containerView bounds].size.width / 2.0f -
+                    detailsSize.width / 2.0f,
+                rect0.origin.y + rect0.size.height + detailsSize.height / 2.0f,
+                detailsSize.width, detailsSize.height);
+            break;
+        case 1:  // Left Region
+            rect0 = CGRectMake(0, [containerView bounds].size.height / 2.0f,
+                               titleSize.width, titleSize.height);
+            rect1 = CGRectMake(0, rect0.origin.y + rect0.size.height +
+                                      detailsSize.height / 2.0f,
+                               detailsSize.width, detailsSize.height);
+            break;
+        case 2:  // Bottom Region
+            rect0 = CGRectMake(
+                [containerView bounds].size.width / 2.0f -
+                    detailsSize.width / 2.0f,
+                [containerView bounds].size.height - detailsSize.height * 2.0f,
+                detailsSize.width, detailsSize.height);
+            rect1 = CGRectMake(
+                [containerView bounds].size.width / 2.0f -
+                    titleSize.width / 2.0f,
+                rect0.origin.y - rect0.size.height - titleSize.height / 2.0f,
+                titleSize.width, titleSize.height);
+            break;
+        case 3:  // Right Region
+            rect0 =
+                CGRectMake([containerView bounds].size.width - titleSize.width,
                            [containerView bounds].size.height / 2.0f,
                            titleSize.width, titleSize.height);
-        rect1 = CGRectMake(
-            [containerView bounds].size.width - detailsSize.width,
-            rect0.origin.y + rect0.size.height + detailsSize.height / 2.0f,
-            detailsSize.width, detailsSize.height);
-        break;
+            rect1 = CGRectMake(
+                [containerView bounds].size.width - detailsSize.width,
+                rect0.origin.y + rect0.size.height + detailsSize.height / 2.0f,
+                detailsSize.width, detailsSize.height);
+            break;
     }
 
     return [NSArray arrayWithObjects:[NSValue valueWithCGRect:rect0],
@@ -423,8 +440,12 @@ int const TYPE_RECTANGLE = 1;
 
 - (void)showcaseTapped {
     [UIView animateWithDuration:0.5
-        animations:^{ self.alpha = 0.0f; }
-        completion:^(BOOL finished) { [self onAnimationComplete]; }];
+        animations:^{
+            self.alpha = 0.0f;
+        }
+        completion:^(BOOL finished) {
+            [self onAnimationComplete];
+        }];
 }
 
 - (void)onAnimationComplete {
