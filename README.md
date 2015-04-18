@@ -26,7 +26,7 @@ Highlight individual parts of your application using iShowcase
 iShowcase is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "iShowcase", "~> 1.3"
+    pod "iShowcase", "~> 1.4"
 
 or
 
