@@ -283,7 +283,7 @@ int const TYPE_RECTANGLE = 1;
     titleSize.width = [UIScreen mainScreen].bounds.size.width;
     CGSize detailsSize =
         [[UIDevice currentDevice] systemVersion].floatValue < 7.0
-            ? [title sizeWithFont:self.detailsFont]
+            ? [details sizeWithFont:self.detailsFont]
             : [details sizeWithAttributes:@{
                 NSFontAttributeName : self.detailsFont
             }];
