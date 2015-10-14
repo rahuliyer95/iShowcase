@@ -1,6 +1,6 @@
 reference: http://www.objc.io/issue-6/travis-ci.html
-language: objective-c
+language: swift
 cache: bundler
 script:
-- pod install --project-directory=./Example/
-- xcodebuild -workspace 'Example/iShowcase.xcworkspace' -scheme iShowcase -sdk iphonesimulator build
+- pod install --project-directory=./Example/Swift/
+- xcodebuild -workspace 'Example/Swift/iShowcaseExample.xcworkspace' -scheme iShowcaseExample -sdk iphonesimulator build
