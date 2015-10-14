@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="exF-nl-GcS">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="k0T-dq-ra9">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="exF-nl-GcS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YLL-Dj-SKd">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="a3T-RW-Wzr" kind="relationship" relationship="rootViewController" id="ueK-f9-dB4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yVa-Rp-jRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="97"/>
+        </scene>
+        <!--iShowcase Example-->
+        <scene sceneID="v9h-IF-H1E">
+            <objects>
+                <viewController id="a3T-RW-Wzr" customClass="ViewController" customModule="iShowcaseExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="osk-ex-JTn"/>
+                        <viewControllerLayoutGuide type="bottom" id="rcT-73-D3d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rdr-N4-mvl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Details Color" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDs-wr-qb8">
+                                <rect key="frame" x="20" y="129" width="123" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1HO-xf-Fhe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="a3T-RW-Wzr" id="ayc-vX-RhP"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title Color" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Adm-Wj-Cvu">
+                                <rect key="frame" x="457" y="81" width="123" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cJS-dt-JfE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="a3T-RW-Wzr" id="bOI-px-PQe"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Background Color" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWs-Cz-ZvI">
+                                <rect key="frame" x="20" y="81" width="123" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Cvr-ZD-Lwj"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="a3T-RW-Wzr" id="C4u-7I-ij7"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJg-ZX-Ibe">
+                                <rect key="frame" x="216" y="220" width="168" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="FwL-vi-fCK"/>
+                                    <constraint firstAttribute="height" constant="30" id="doP-97-g9L"/>
+                                </constraints>
+                                <state key="normal" title="Multiple iShowcases">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="multipleShowcaseClick:" destination="a3T-RW-Wzr" eventType="touchUpInside" id="uDy-CT-4cM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKT-6j-JYj">
+                                <rect key="frame" x="216" y="258" width="168" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="168" id="53e-7E-RFo"/>
+                                    <constraint firstAttribute="height" constant="30" id="ufj-uR-E9M"/>
+                                </constraints>
+                                <state key="normal" title="UITableView iShowcase">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tableViewShowcaseClick:" destination="a3T-RW-Wzr" eventType="touchUpInside" id="ufo-ud-QR9"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Highlight Color" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8hm-rU-Sje">
+                                <rect key="frame" x="457" y="129" width="123" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="thp-FG-0X4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="a3T-RW-Wzr" id="RZ6-Gr-J2M"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5l-N7-wcG">
+                                <rect key="frame" x="216" y="296" width="168" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fnM-yP-tMA"/>
+                                    <constraint firstAttribute="width" constant="168" id="voR-ZR-OmJ"/>
+                                </constraints>
+                                <state key="normal" title="Custom iShowcase">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="customShowcaseClick:" destination="a3T-RW-Wzr" eventType="touchUpInside" id="2m2-tv-j4J"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGn-mb-WF7">
+                                <rect key="frame" x="223" y="182" width="155" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="atH-PM-Cm0"/>
+                                    <constraint firstAttribute="width" constant="155" id="qtU-wN-NHN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Default iShowcase"/>
+                                <connections>
+                                    <action selector="defaultShowcaseClick:" destination="a3T-RW-Wzr" eventType="touchUpInside" id="5vf-yL-fFg"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xo4-Ov-2xi">
+                                <rect key="frame" x="0.0" y="334" width="600" height="266"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="a3T-RW-Wzr" id="eRZ-Nb-gn6"/>
+                                    <outlet property="delegate" destination="a3T-RW-Wzr" id="OlG-7A-Usd"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8hm-rU-Sje" firstAttribute="top" secondItem="Adm-Wj-Cvu" secondAttribute="bottom" constant="18" id="0y0-cS-vDL"/>
+                            <constraint firstItem="fDs-wr-qb8" firstAttribute="width" secondItem="QWs-Cz-ZvI" secondAttribute="width" id="2Qd-FB-S9B"/>
+                            <constraint firstItem="Adm-Wj-Cvu" firstAttribute="width" secondItem="QWs-Cz-ZvI" secondAttribute="width" id="9CA-Oe-RHi"/>
+                            <constraint firstItem="JGn-mb-WF7" firstAttribute="centerX" secondItem="rdr-N4-mvl" secondAttribute="centerX" id="AcO-RX-7M4"/>
+                            <constraint firstItem="G5l-N7-wcG" firstAttribute="centerX" secondItem="rdr-N4-mvl" secondAttribute="centerX" id="BeZ-vm-yy3"/>
+                            <constraint firstItem="hKT-6j-JYj" firstAttribute="centerX" secondItem="rdr-N4-mvl" secondAttribute="centerX" id="GYS-9P-3Hc"/>
+                            <constraint firstItem="8hm-rU-Sje" firstAttribute="width" secondItem="Adm-Wj-Cvu" secondAttribute="width" id="GmN-hH-sJm"/>
+                            <constraint firstItem="ZJg-ZX-Ibe" firstAttribute="centerX" secondItem="rdr-N4-mvl" secondAttribute="centerX" id="Hcw-Kq-SxX"/>
+                            <constraint firstItem="G5l-N7-wcG" firstAttribute="top" secondItem="hKT-6j-JYj" secondAttribute="bottom" constant="8" id="J6n-30-zk1"/>
+                            <constraint firstItem="JGn-mb-WF7" firstAttribute="top" secondItem="fDs-wr-qb8" secondAttribute="bottom" constant="23" id="JeK-v0-Uy4"/>
+                            <constraint firstAttribute="trailing" secondItem="xo4-Ov-2xi" secondAttribute="trailing" id="N6b-d8-9M8"/>
+                            <constraint firstItem="fDs-wr-qb8" firstAttribute="top" secondItem="QWs-Cz-ZvI" secondAttribute="bottom" constant="18" id="TBm-uc-zSG"/>
+                            <constraint firstItem="Adm-Wj-Cvu" firstAttribute="top" secondItem="osk-ex-JTn" secondAttribute="bottom" constant="17" id="XLe-lc-i5Y"/>
+                            <constraint firstItem="QWs-Cz-ZvI" firstAttribute="top" secondItem="osk-ex-JTn" secondAttribute="bottom" constant="17" id="ZwC-Kr-IL0"/>
+                            <constraint firstItem="hKT-6j-JYj" firstAttribute="top" secondItem="ZJg-ZX-Ibe" secondAttribute="bottom" constant="8" id="aKN-Xl-dku"/>
+                            <constraint firstItem="fDs-wr-qb8" firstAttribute="leading" secondItem="rdr-N4-mvl" secondAttribute="leading" constant="20" id="bsL-R6-RCr"/>
+                            <constraint firstItem="ZJg-ZX-Ibe" firstAttribute="top" secondItem="JGn-mb-WF7" secondAttribute="bottom" constant="8" id="inZ-DU-7ui"/>
+                            <constraint firstItem="QWs-Cz-ZvI" firstAttribute="leading" secondItem="rdr-N4-mvl" secondAttribute="leading" constant="20" id="jft-Vj-Pan"/>
+                            <constraint firstItem="xo4-Ov-2xi" firstAttribute="leading" secondItem="rdr-N4-mvl" secondAttribute="leading" id="kog-yb-PR2"/>
+                            <constraint firstAttribute="trailing" secondItem="Adm-Wj-Cvu" secondAttribute="trailing" constant="20" id="m3T-66-rGE"/>
+                            <constraint firstAttribute="trailing" secondItem="8hm-rU-Sje" secondAttribute="trailing" constant="20" id="qEM-5j-6wF"/>
+                            <constraint firstItem="rcT-73-D3d" firstAttribute="top" secondItem="xo4-Ov-2xi" secondAttribute="bottom" id="spO-gu-U0W"/>
+                            <constraint firstItem="xo4-Ov-2xi" firstAttribute="top" secondItem="G5l-N7-wcG" secondAttribute="bottom" constant="8" id="tEx-lt-HPp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="iShowcase Example" id="BKz-hC-Rs4">
+                        <barButtonItem key="rightBarButtonItem" title="Example" id="nLL-DE-Ke6">
+                            <connections>
+                                <action selector="barButtonClick:" destination="a3T-RW-Wzr" id="Ssg-oe-0DO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backgroundColor" destination="QWs-Cz-ZvI" id="yD0-kO-g4v"/>
+                        <outlet property="detailsColor" destination="fDs-wr-qb8" id="TS5-1x-QsB"/>
+                        <outlet property="highlightColor" destination="8hm-rU-Sje" id="qGd-jY-qkS"/>
+                        <outlet property="tableView" destination="xo4-Ov-2xi" id="auV-3L-gKj"/>
+                        <outlet property="titleColor" destination="Adm-Wj-Cvu" id="9yz-US-PQ4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6f9-yL-K5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="744" y="97"/>
+        </scene>
+    </scenes>
+</document>

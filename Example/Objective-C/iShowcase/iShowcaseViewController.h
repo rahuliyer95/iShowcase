@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <iShowcase/iShowcase.h>
+#import "iShowcase.h"
 
 @interface iShowcaseViewController
     : UIViewController <UITextFieldDelegate, UITableViewDataSource,

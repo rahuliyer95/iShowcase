@@ -203,7 +203,8 @@ int const TYPE_RECTANGLE = 1;
             [containerView addSubview:self];
         }
         completion:^(BOOL finished) {
-            [delegate iShowcaseShown:self];
+            if ([delegate respondsToSelector:@selector(iShowcaseShown:)])
+                [delegate iShowcaseShown:self];
         }];
 }
 
@@ -275,18 +276,9 @@ int const TYPE_RECTANGLE = 1;
 }
 
 - (void)setupTextWithTitle:(NSString *)title detailsText:(NSString *)details {
-    CGSize titleSize =
-        [[UIDevice currentDevice] systemVersion].floatValue < 7.0
-            ? [title sizeWithFont:self.titleFont]
-            : [title
-                  sizeWithAttributes:@{NSFontAttributeName : self.titleFont}];
+    CGSize titleSize = [title sizeWithAttributes:@{NSFontAttributeName : self.titleFont}];
     titleSize.width = [UIScreen mainScreen].bounds.size.width;
-    CGSize detailsSize =
-        [[UIDevice currentDevice] systemVersion].floatValue < 7.0
-            ? [details sizeWithFont:self.detailsFont]
-            : [details sizeWithAttributes:@{
-                NSFontAttributeName : self.detailsFont
-            }];
+    CGSize detailsSize = [details sizeWithAttributes:@{NSFontAttributeName : self.detailsFont}];
     detailsSize.width = titleSize.width;
     NSArray *textPosition =
         [self getBestPositionOfTitleWithSize:titleSize detailsSize:detailsSize];
@@ -450,7 +442,8 @@ int const TYPE_RECTANGLE = 1;
 
 - (void)onAnimationComplete {
     [self recycleViews];
-    [delegate iShowcaseDismissed:self];
+    if ([delegate respondsToSelector:@selector(iShowcaseDismissed:)])
+        [delegate iShowcaseDismissed:self];
 }
 
 - (void)recycleViews {

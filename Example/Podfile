@@ -1,3 +1,0 @@
-target 'iShowcase', :exclusive => true do
-  pod "iShowcase", :path => "../iShowcase.podspec"
-end

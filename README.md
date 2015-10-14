@@ -26,12 +26,17 @@ Highlight individual parts of your application using iShowcase
 iShowcase is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "iShowcase", "~> 1.4"
+    pod "iShowcase", "~> 1.5"
 
 or
 
-* Add the `iShowcase.h` and `iShowcase.m` files to your project
-* Add `#include "iShowcase.h"` to your ViewController
+### Objective-C
+
+  * Add the `iShowcase.h` and `iShowcase.m` from Objective-C folder to your project
+  * Add `#include "iShowcase.h"` to your ViewController
+
+### Swift
+  * Add `iShowcase.swift` file to your project
 
 ## [Documentation](http://rahuliyer95.github.io/iShowcase/docs)
 
@@ -41,6 +46,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 #### Creating Instance
 
+##### Objective-C
 ``` objective-c
 // Create Object of iShowcase
 iShowcase *showcase = [[iShowcase alloc] init];
@@ -49,6 +55,23 @@ iShowcase *showcase = [[iShowcase alloc] init];
 initWithTitleFont: (UIFont*) titleFont detailsFont: (UIFont*) detailsFont;
 initWithTitleColor: (UIColor*) titleColor detailsColor: (UIColor*) detailsColor;
 ```
+
+##### Swift
+``` swift
+// Create Object of iShowcase
+let showcase = iShowcase()
+
+// Other init Methods
+let showcase = iShowcase(
+        withTitleFont: UIFont?,
+        withDetailsFont: UIFont?,
+        withTitleColor: UIColor?,
+        withDetailsColor: UIColor?,
+        withBackgroundColor: UIColor?,
+        withHighlightColor: UIColor?,
+        withIType iType: TYPE?)
+````
+
 #### Delegate
 
 ``` objective-c
@@ -62,6 +85,8 @@ iShowcaseDismissed // Called When Showcase is removed
 ```
 
 #### Displaying iShowcase
+
+##### Objective-C
 ``` objective-c
 [showcase setupShowcaseForView:(UIView *) title:(NSString *) details:(NSString *)];
 [showcase show];
@@ -78,8 +103,26 @@ setupShowcaseForTableView:(UITableView *) withIndexOfItem:(NSUInteger) sectionOf
 
 ```
 
+###### Swift
+
+``` swift
+showcase.setupShowcase(forView: UIView, withTitle: String, detailsMessage: String)
+showcase.show()
+
+// For custom location
+
+setupShowcase(forLocation: CGRect, withTitle: String, detailsMessage: String)
+
+// Methods for other UI Elements
+
+setupShowcase(forTableView: UITableView, withTitle: String, detailsMessage: String)
+setupShowcase(forTableView: UITableView, withIndexOfItem: Int, setionOfItem: Int, withTitle: String, detailsMessage: String)
+setupShowcase(forBarButtonItem: UIBarButtonItem, withTitle: String, detailsMessage: String)
+```
+
 #### Customizations
 
+##### Objective-C
 ``` objective-c
 
 // Constants
@@ -97,6 +140,26 @@ setRadius: (CGFloat) radius;
 setSingleShotId: (long) singleShotId;
 ```
 
+##### Swift
+``` swift
+public enum TYPE: Int {
+    case CIRCLE = 0
+    case RECTANGLE = 1
+}
+
+titleFont: UIFont
+detailsFont: UIFont
+titleColor: UIColor
+detailsColor: UIColor
+highlightColor: UIColor
+iType: TYPE
+titleTextAlignment: NSTextAlignment
+detailsTextAlignment: NSTextAlignment
+radius: Float
+singleShotId: Int64
+
+```
+
 ## Credits
 
 Inspired from [ShowcaseView](https://github.com/amlcurran/Showcaseview) by [Alex Curran](https://github.com/amlcurran/)
@@ -108,4 +171,3 @@ rahuliyer95, rahuliyer573@gmail.com
 ## License
 
 iShowcase is available under the MIT license. See the LICENSE file for more info.
-

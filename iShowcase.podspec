@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "iShowcase"
-  s.version          = "1.4"
+  s.version          = "1.5"
   s.summary          = "Highlight individual parts of your app iShowcase."
   s.homepage         = "https://github.com/rahuliyer95/iShowcase"
   s.screenshots      = "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/screenshot/1.png", "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/screenshot/2.png", "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/screenshot/3.png", "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/screenshot/4.png"
@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/rahuliyer95/iShowcase.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/RahulSIyer'
 
-  s.platform     = :ios, '6.0'
+  s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes'
+  s.source_files = 'Source/*.{swift,h}'
   s.frameworks = 'UIKit'
 end
