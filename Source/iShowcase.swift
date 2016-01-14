@@ -17,12 +17,12 @@ import Foundation
 @objc public class iShowcase: UIView {
     
     /**
-    Type of the highlight for the showcase
-    
-    - CIRCLE:    Creates a circular highlight around the view
-    - RECTANGLE: Creates a rectangular highligh around the view
-    */
-    public enum TYPE: Int {
+     Type of the highlight for the showcase
+
+     - CIRCLE:    Creates a circular highlight around the view
+     - RECTANGLE: Creates a rectangular highligh around the view
+     */
+    @objc public enum TYPE: Int {
         case CIRCLE = 0
         case RECTANGLE = 1
     }
@@ -88,18 +88,18 @@ import Foundation
     }
     
     /**
-    Initialize an instance of iShowcase
-    
-    - parameter titleFont:       Custom font for the title
-    - parameter detailsFont:     Custom font for the description
-    - parameter titleColor:      Custom color for the title
-    - parameter detailsColor:    Custom color for the description
-    - parameter backgroundColor: Color of the background
-    - parameter highlightColor:  Color for the iShowcase highlight
-    - parameter iType:           Type of the iShowcase highlight
-    
-    - returns: Instance of iShowcase
-    */
+     Initialize an instance of iShowcase
+
+     - parameter titleFont:       Custom font for the title
+     - parameter detailsFont:     Custom font for the description
+     - parameter titleColor:      Custom color for the title
+     - parameter detailsColor:    Custom color for the description
+     - parameter backgroundColor: Color of the background
+     - parameter highlightColor:  Color for the iShowcase highlight
+     - parameter iType:           Type of the iShowcase highlight
+
+     - returns: Instance of iShowcase
+     */
     public convenience init(withTitleFont titleFont: UIFont?,
         withDetailsFont detailsFont: UIFont?,
         withTitleColor titleColor: UIColor?,
@@ -107,46 +107,46 @@ import Foundation
         withBackgroundColor backgroundColor: UIColor?,
         withHighlightColor highlightColor: UIColor?,
         withIType iType: TYPE?) {
-            self.init()
-            
-            if let titleFont = titleFont {
-                self.titleFont = titleFont
-            }
-            
-            if let detailsFont = detailsFont {
-                self.detailsFont = detailsFont
-            }
-            
-            if let titleColor = titleColor {
-                self.titleColor = titleColor
-            }
-            
-            if let detailsColor = detailsColor {
-                self.detailsColor = detailsColor
-            }
-            
-            if let backgroundColor = backgroundColor {
-                self.backgroundColor = backgroundColor
-            } else {
-                self.backgroundColor = UIColor.blackColor()
-            }
-            
-            if let highlightColor = highlightColor {
-                self.highlightColor = highlightColor
-            }
-            
-            if let iType = iType {
-                self.iType = iType
-            }
+        self.init()
+        
+        if let titleFont = titleFont {
+            self.titleFont = titleFont
+        }
+        
+        if let detailsFont = detailsFont {
+            self.detailsFont = detailsFont
+        }
+        
+        if let titleColor = titleColor {
+            self.titleColor = titleColor
+        }
+        
+        if let detailsColor = detailsColor {
+            self.detailsColor = detailsColor
+        }
+        
+        if let backgroundColor = backgroundColor {
+            self.backgroundColor = backgroundColor
+        } else {
+            self.backgroundColor = UIColor.blackColor()
+        }
+        
+        if let highlightColor = highlightColor {
+            self.highlightColor = highlightColor
+        }
+        
+        if let iType = iType {
+            self.iType = iType
+        }
     }
     
     /**
-    Setup the showcase for a view
-    
-    - parameter view:    The view to be highlighted
-    - parameter title:   Title for the showcase
-    - parameter details: Description of the showcase
-    */
+     Setup the showcase for a view
+
+     - parameter view:    The view to be highlighted
+     - parameter title:   Title for the showcase
+     - parameter details: Description of the showcase
+     */
     public func setupShowcase(forView view: UIView, withTitle title: String, detailsMessage details: String) {
         self.setupShowcase(
             forTarget: view,
@@ -155,12 +155,12 @@ import Foundation
     }
     
     /**
-    Setup showcase for the item at 1st position (0th index) of the table
-    
-    - parameter tableView: Table whose item is to be highlighted
-    - parameter title:     Title for the showcase
-    - parameter details:   Description of the showcase
-    */
+     Setup showcase for the item at 1st position (0th index) of the table
+
+     - parameter tableView: Table whose item is to be highlighted
+     - parameter title:     Title for the showcase
+     - parameter details:   Description of the showcase
+     */
     public func setupShowcase(forTableView tableView: UITableView, withTitle title: String, detailsMessage details: String) {
         self.setupShowcase(
             forTableView: tableView,
@@ -171,14 +171,14 @@ import Foundation
     }
     
     /**
-    Setup showcase for the item at the given index in the given section of the table
-    
-    - parameter tableView: Table whose item is to be highlighted
-    - parameter row:       Index of the item to be highlighted
-    - parameter section:   Section of the item to be highlighted
-    - parameter title:     Title for the showcase
-    - parameter details:   Description of the showcase
-    */
+     Setup showcase for the item at the given index in the given section of the table
+
+     - parameter tableView: Table whose item is to be highlighted
+     - parameter row:       Index of the item to be highlighted
+     - parameter section:   Section of the item to be highlighted
+     - parameter title:     Title for the showcase
+     - parameter details:   Description of the showcase
+     */
     public func setupShowcase(forTableView tableView: UITableView, withIndexOfItem row: Int, setionOfItem section: Int, withTitle title: String, detailsMessage details: String) {
         self.setupShowcase(
             forLocation: tableView.convertRect(
@@ -189,12 +189,12 @@ import Foundation
     }
     
     /**
-    Setup showcase for the Bar Button in the Navigation Bar
-    
-    - parameter barButtonItem: Bar button to be highlighted
-    - parameter title:         Title for the showcase
-    - parameter details:       Description of the showcase
-    */
+     Setup showcase for the Bar Button in the Navigation Bar
+
+     - parameter barButtonItem: Bar button to be highlighted
+     - parameter title:         Title for the showcase
+     - parameter details:       Description of the showcase
+     */
     public func setupShowcase(forBarButtonItem barButtonItem: UIBarButtonItem, withTitle title: String, detailsMessage details: String) {
         self.setupShowcase(
             forTarget: barButtonItem.valueForKey("view")!,
@@ -203,12 +203,12 @@ import Foundation
     }
     
     /**
-    Setup showcase to highlight any object that can be converted to rect on the screen
-    
-    - parameter target:  The object to be highlighted
-    - parameter title:   Title for the showcase
-    - parameter details: Description of the showcase
-    */
+     Setup showcase to highlight any object that can be converted to rect on the screen
+
+     - parameter target:  The object to be highlighted
+     - parameter title:   Title for the showcase
+     - parameter details: Description of the showcase
+     */
     public func setupShowcase(forTarget target: AnyObject, withTitle title: String, detailsMessage details: String) {
         self.setupShowcase(
             forLocation: target.convertRect(target.bounds, toView: self.containerView),
@@ -217,12 +217,12 @@ import Foundation
     }
     
     /**
-    Setup showcase to highlight a particular location on the screen
-    
-    - parameter location: Location to be highlighted
-    - parameter title:    Title for the showcase
-    - parameter details:  Description of the showcase
-    */
+     Setup showcase to highlight a particular location on the screen
+
+     - parameter location: Location to be highlighted
+     - parameter title:    Title for the showcase
+     - parameter details:  Description of the showcase
+     */
     public func setupShowcase(forLocation location: CGRect, withTitle title: String, detailsMessage details: String) {
         self.showcaseRect = location
         self.setupBackground()
@@ -236,8 +236,8 @@ import Foundation
     }
     
     /**
-    Display the iShowcase
-    */
+     Display the iShowcase
+     */
     public func show() {
         if self.singleShotId != -1 && NSUserDefaults.standardUserDefaults().boolForKey(String(format: "iShowcase-%ld", self.singleShotId)) {
             self.recycleViews()
@@ -253,14 +253,14 @@ import Foundation
             containerView,
             duration: 0.5,
             options: UIViewAnimationOptions.TransitionCrossDissolve,
-            animations: { () -> Void in
+            animations: {() -> Void in
                 self.containerView.addSubview(self)
-            }) { (Bool) -> Void in
-                if let delegate = self.delegate {
-                    if delegate.respondsToSelector("iShowcaseShown:") {
-                        delegate.iShowcaseShown!(self)
-                    }
+            }) {(Bool) -> Void in
+            if let delegate = self.delegate {
+                if delegate.respondsToSelector("iShowcaseShown:") {
+                    delegate.iShowcaseShown!(self)
                 }
+            }
         }
     }
     
@@ -375,7 +375,7 @@ import Foundation
             if self.region != .BOTTOM {
                 self.titleLabel = UILabel(frame: textPosition[0])
                 self.detailsLabel = UILabel(frame: textPosition[1])
-            } else { // Bottom Region
+            } else {// Bottom Region
                 self.detailsLabel = UILabel(frame: textPosition[0])
                 self.titleLabel = UILabel(frame: textPosition[1])
             }
@@ -388,7 +388,7 @@ import Foundation
         titleLabel.textColor = self.titleColor
         titleLabel.font = self.titleFont
         
-        detailsLabel.lineBreakMode =  NSLineBreakMode.ByWordWrapping
+        detailsLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         detailsLabel.numberOfLines = 0
         detailsLabel.text = details
         detailsLabel.textAlignment = self.detailsTextAlignment
@@ -418,7 +418,7 @@ import Foundation
         if let region = self.region {
             
             switch region {
-                
+            
             case .TOP:
                 rect0 = CGRectMake(
                     containerView.bounds.size.width / 2.0 - titleSize.width / 2.0,
@@ -431,7 +431,7 @@ import Foundation
                     detailsSize.width,
                     detailsSize.height)
                 break
-                
+            
             case .LEFT:
                 rect0 = CGRectMake(
                     0,
@@ -444,7 +444,7 @@ import Foundation
                     detailsSize.width,
                     detailsSize.height)
                 break
-                
+            
             case .BOTTOM:
                 rect0 = CGRectMake(
                     containerView.bounds.size.width / 2.0 - detailsSize.width / 2.0,
@@ -457,7 +457,7 @@ import Foundation
                     titleSize.width,
                     titleSize.height)
                 break
-                
+            
             case .RIGHT:
                 rect0 = CGRectMake(
                     containerView.bounds.size.width - titleSize.width,
@@ -488,10 +488,10 @@ import Foundation
     internal func showcaseTapped() {
         UIView.animateWithDuration(
             0.5,
-            animations: { () -> Void in
+            animations: {() -> Void in
                 self.alpha = 0
-            }) { (Bool) -> Void in
-                self.onAnimationComplete()
+            }) {(Bool) -> Void in
+            self.onAnimationComplete()
         }
     }
     
