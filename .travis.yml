@@ -6,6 +6,5 @@ before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-    - xcodebuild -project 'Example/Objective-C/iShowcase.xcodeproj' -scheme iShowcase -sdk iphonesimulator build | xcpretty
-    - pod install --project-directory=./Example/Swift/
-    - xcodebuild -workspace 'Example/Swift/iShowcaseExample.xcworkspace' -scheme iShowcase -sdk iphonesimulator build | xcpretty
+    - pod install --project-directory=./Example/
+    - xcodebuild -workspace 'Example/iShowcaseExample.xcworkspace' -scheme iShowcase -sdk iphonesimulator build | xcpretty
