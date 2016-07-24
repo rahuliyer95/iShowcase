@@ -26,6 +26,8 @@ import Foundation
 
 @objc public class iShowcase: UIView {
 
+    // MARK: Properties
+
     /**
      Type of the highlight for the showcase
 
@@ -44,7 +46,7 @@ import Foundation
         case RIGHT = 3
 
         static func regionFromInt(region: Int) -> REGION {
-            switch (region) {
+            switch region {
             case 0:
                 return .TOP
             case 1:
@@ -84,6 +86,11 @@ import Foundation
     /// Delegate for handling iShowcase callbacks
     public var delegate: iShowcaseDelegate?
 
+    // MARK: Initialize
+
+    /**
+     Initialize an instance of iShowcae
+     */
     public init() {
         super.init(frame: CGRect(
             x: 0,
@@ -93,10 +100,18 @@ import Foundation
         setup()
     }
 
+    /**
+     This method is not supported
+     */
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: Public
+
+    /**
+     Position the views on the screen for display
+     */
     public override func layoutSubviews() {
         super.layoutSubviews()
         if showcaseImageView != nil {
@@ -137,8 +152,11 @@ import Foundation
      - parameter tableView: Table whose item is to be highlighted
      - parameter indexPath: IndexPath of the item to be highlighted
      */
-    public func setupShowcaseForTableView(tableView: UITableView, withIndexPath indexPath: NSIndexPath) {
-        setupShowcaseForTableView(tableView, withIndexOfItem: indexPath.row, andSectionOfItem: indexPath.section)
+    public func setupShowcaseForTableView(tableView: UITableView,
+        withIndexPath indexPath: NSIndexPath) {
+            setupShowcaseForTableView(tableView,
+                withIndexOfItem: indexPath.row,
+                andSectionOfItem: indexPath.section)
     }
 
     /**
@@ -148,12 +166,13 @@ import Foundation
      - parameter row:       Index of the item to be highlighted
      - parameter section:   Section of the item to be highlighted
      */
-    public func setupShowcaseForTableView(tableView: UITableView, withIndexOfItem row: Int, andSectionOfItem section: Int) {
-        let indexPath = NSIndexPath(forRow: row, inSection: section)
-        targetView = tableView.cellForRowAtIndexPath(indexPath)
-        setupShowcaseForLocation(tableView.convertRect(
-            tableView.rectForRowAtIndexPath(indexPath),
-            toView: containerView))
+    public func setupShowcaseForTableView(tableView: UITableView,
+        withIndexOfItem row: Int, andSectionOfItem section: Int) {
+            let indexPath = NSIndexPath(forRow: row, inSection: section)
+            targetView = tableView.cellForRowAtIndexPath(indexPath)
+            setupShowcaseForLocation(tableView.convertRect(
+                tableView.rectForRowAtIndexPath(indexPath),
+                toView: containerView))
     }
 
     /**
@@ -179,8 +198,9 @@ import Foundation
      */
     public func show() {
         if singleShotId != -1
-        && NSUserDefaults.standardUserDefaults().boolForKey(String(format: "iShowcase-%ld", singleShotId)) {
-            return
+        && NSUserDefaults.standardUserDefaults().boolForKey(String(
+            format: "iShowcase-%ld", singleShotId)) {
+                return
         }
 
         self.alpha = 1
@@ -202,6 +222,8 @@ import Foundation
                 }
         }
     }
+
+    // MARK: Private
 
     private func setup() {
         self.backgroundColor = UIColor.clearColor()
@@ -237,7 +259,8 @@ import Foundation
     }
 
     private func setupBackground() {
-        UIGraphicsBeginImageContextWithOptions(UIScreen.mainScreen().bounds.size, false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(UIScreen.mainScreen().bounds.size,
+            false, UIScreen.mainScreen().scale)
         var context: CGContextRef? = UIGraphicsGetCurrentContext()
         CGContextSetFillColorWithColor(context, coverColor.CGColor)
         CGContextFillRect(context, containerView.bounds)
@@ -252,7 +275,7 @@ import Foundation
                     width: showcaseRect.size.width + 30,
                     height: showcaseRect.size.height + 30)
 
-                CGContextSetShadowWithColor(context, CGSizeZero, 30, highlightColor.CGColor)
+                CGContextSetShadowWithColor(context, CGSize.zero, 30, highlightColor.CGColor)
                 CGContextSetFillColorWithColor(context, coverColor.CGColor)
                 CGContextSetStrokeColorWithColor(context, highlightColor.CGColor)
                 CGContextAddPath(context, UIBezierPath(rect: highlightRect).CGPath)
@@ -268,7 +291,7 @@ import Foundation
 
                 // Clear region
                 UIGraphicsBeginImageContext(showcase.size)
-                showcase.drawAtPoint(CGPointZero)
+                showcase.drawAtPoint(CGPoint.zero)
                 context = UIGraphicsGetCurrentContext()
                 CGContextClearRect(context, showcaseRect)
             }
@@ -280,18 +303,21 @@ import Foundation
 
                 // Draw highlight
                 CGContextSetLineWidth(context, 2.54)
-                CGContextSetShadowWithColor(context, CGSizeZero, 30, highlightColor.CGColor)
+                CGContextSetShadowWithColor(context, CGSize.zero, 30, highlightColor.CGColor)
                 CGContextSetFillColorWithColor(context, coverColor.CGColor)
                 CGContextSetStrokeColorWithColor(context, highlightColor.CGColor)
-                CGContextAddArc(context, center.x, center.y, CGFloat(radius * 2), 0, CGFloat(2 * M_PI), 0)
+                CGContextAddArc(context, center.x, center.y, CGFloat(radius * 2), 0,
+                    CGFloat(2 * M_PI), 0)
                 CGContextDrawPath(context, .FillStroke)
-                CGContextAddArc(context, center.x, center.y, CGFloat(radius), 0, CGFloat(2 * M_PI), 0)
+                CGContextAddArc(context, center.x, center.y, CGFloat(radius), 0,
+                    CGFloat(2 * M_PI), 0)
                 CGContextDrawPath(context, .FillStroke)
 
                 // Clear circle
                 CGContextSetFillColorWithColor(context, UIColor.clearColor().CGColor)
                 CGContextSetBlendMode(context, .Clear)
-                CGContextAddArc(context, center.x, center.y, CGFloat(radius - 0.54), 0, CGFloat(2 * M_PI), 0)
+                CGContextAddArc(context, center.x, center.y, CGFloat(radius - 0.54), 0,
+                    CGFloat(2 * M_PI), 0)
                 CGContextDrawPath(context, .Fill)
                 CGContextSetBlendMode(context, .Normal)
             }
@@ -310,12 +336,14 @@ import Foundation
         let areas = [
             top * UIScreen.mainScreen().bounds.size.width, // Top region
             left * UIScreen.mainScreen().bounds.size.height, // Left region
-            (UIScreen.mainScreen().bounds.size.height - bottom) * UIScreen.mainScreen().bounds.size.width, // Bottom region
-            (UIScreen.mainScreen().bounds.size.width - right) - UIScreen.mainScreen().bounds.size.height // Right region
+            (UIScreen.mainScreen().bounds.size.height - bottom)
+                * UIScreen.mainScreen().bounds.size.width, // Bottom region
+            (UIScreen.mainScreen().bounds.size.width - right)
+                - UIScreen.mainScreen().bounds.size.height // Right region
         ]
 
         var largestIndex = 0
-        for (var i: Int = 0; i < areas.count; ++i) {
+        for i in 0..<areas.count {
             if areas[i] > areas[largestIndex] {
                 largestIndex = i
             }
@@ -324,7 +352,7 @@ import Foundation
     }
 
     private func setupText() {
-        var titleSize: CGSize!
+        var titleSize = CGSize.zero
         if let text = titleLabel.text {
             titleSize = NSString(string: text).sizeWithAttributes([
                 NSFontAttributeName: titleLabel.font
@@ -333,7 +361,7 @@ import Foundation
             titleSize = attributedText.size()
         }
 
-        var detailsSize: CGSize!
+        var detailsSize = CGSize.zero
         if let text = detailsLabel.text {
             detailsSize = NSString(string: text).sizeWithAttributes([
                 NSFontAttributeName: detailsLabel.font
@@ -342,7 +370,8 @@ import Foundation
             detailsSize = attributedText.size()
         }
 
-        let textPosition = getBestPositionOfTitle(withTitleSize: titleSize, withDetailsSize: detailsSize)
+        let textPosition = getBestPositionOfTitle(withTitleSize: titleSize,
+            withDetailsSize: detailsSize)
 
         if region == .BOTTOM {
             detailsLabel.frame = textPosition.0
@@ -373,62 +402,63 @@ import Foundation
 
     }
 
-    private func getBestPositionOfTitle(withTitleSize titleSize: CGSize, withDetailsSize detailsSize: CGSize) -> (CGRect, CGRect) {
-        var rect0 = CGRect(), rect1 = CGRect()
-        if let region = self.region {
-            switch region {
-            case .TOP:
-                rect0 = CGRect(
-                    x: containerView.bounds.size.width / 2.0 - titleSize.width / 2.0,
-                    y: titleSize.height + 64,
-                    width: titleSize.width,
-                    height: titleSize.height)
-                rect1 = CGRect(
-                    x: containerView.bounds.size.width / 2.0 - detailsSize.width / 2.0,
-                    y: rect0.origin.y + rect0.size.height + detailsSize.height / 2.0,
-                    width: detailsSize.width,
-                    height: detailsSize.height)
-                break
-            case .LEFT:
-                rect0 = CGRectMake(
-                    0,
-                    containerView.bounds.size.height / 2.0,
-                    titleSize.width,
-                    titleSize.height)
-                rect1 = CGRectMake(
-                    0,
-                    rect0.origin.y + rect0.size.height + detailsSize.height / 2.0,
-                    detailsSize.width,
-                    detailsSize.height)
-                break
-            case .BOTTOM:
-                rect0 = CGRectMake(
-                    containerView.bounds.size.width / 2.0 - detailsSize.width / 2.0,
-                    containerView.bounds.size.height - detailsSize.height * 2.0,
-                    detailsSize.width,
-                    detailsSize.height)
-                rect1 = CGRectMake(
-                    containerView.bounds.size.width / 2.0 - titleSize.width / 2.0,
-                    rect0.origin.y - rect0.size.height - titleSize.height / 2.0,
-                    titleSize.width,
-                    titleSize.height)
-                break
-            case .RIGHT:
-                rect0 = CGRectMake(
-                    containerView.bounds.size.width - titleSize.width,
-                    containerView.bounds.size.height / 2.0,
-                    titleSize.width,
-                    titleSize.height)
-                rect1 = CGRectMake(
-                    containerView.bounds.size.width - detailsSize.width,
-                    rect0.origin.y + rect0.size.height + detailsSize.height / 2.0,
-                    detailsSize.width,
-                    detailsSize.height)
-                break
+    private func getBestPositionOfTitle(withTitleSize titleSize: CGSize,
+        withDetailsSize detailsSize: CGSize) -> (CGRect, CGRect) {
+            var rect0 = CGRect(), rect1 = CGRect()
+            if let region = self.region {
+                switch region {
+                case .TOP:
+                    rect0 = CGRect(
+                        x: containerView.bounds.size.width / 2.0 - titleSize.width / 2.0,
+                        y: titleSize.height + 20,
+                        width: titleSize.width,
+                        height: titleSize.height)
+                    rect1 = CGRect(
+                        x: containerView.bounds.size.width / 2.0 - detailsSize.width / 2.0,
+                        y: rect0.origin.y + rect0.size.height + detailsSize.height / 2.0,
+                        width: detailsSize.width,
+                        height: detailsSize.height)
+                    break
+                case .LEFT:
+                    rect0 = CGRect(
+                        x: 0,
+                        y: containerView.bounds.size.height / 2.0,
+                        width: titleSize.width,
+                        height: titleSize.height)
+                    rect1 = CGRect(
+                        x: 0,
+                        y: rect0.origin.y + rect0.size.height + detailsSize.height / 2.0,
+                        width: detailsSize.width,
+                        height: detailsSize.height)
+                    break
+                case .BOTTOM:
+                    rect0 = CGRect(
+                        x: containerView.bounds.size.width / 2.0 - detailsSize.width / 2.0,
+                        y: containerView.bounds.size.height - detailsSize.height * 2.0,
+                        width: detailsSize.width,
+                        height: detailsSize.height)
+                    rect1 = CGRect(
+                        x: containerView.bounds.size.width / 2.0 - titleSize.width / 2.0,
+                        y: rect0.origin.y - rect0.size.height - titleSize.height / 2.0,
+                        width: titleSize.width,
+                        height: titleSize.height)
+                    break
+                case .RIGHT:
+                    rect0 = CGRect(
+                        x: containerView.bounds.size.width - titleSize.width,
+                        y: containerView.bounds.size.height / 2.0,
+                        width: titleSize.width,
+                        height: titleSize.height)
+                    rect1 = CGRect(
+                        x: containerView.bounds.size.width - detailsSize.width,
+                        y: rect0.origin.y + rect0.size.height + detailsSize.height / 2.0,
+                        width: detailsSize.width,
+                        height: detailsSize.height)
+                    break
+                }
             }
-        }
 
-        return (rect0, rect1)
+            return (rect0, rect1)
     }
 
     private func getGestureRecgonizer() -> UIGestureRecognizer {
@@ -450,7 +480,8 @@ import Foundation
 
     private func onAnimationComplete() {
         if singleShotId != -1 {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: String(format: "iShowcase-%ld", singleShotId))
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: String(
+                format: "iShowcase-%ld", singleShotId))
             singleShotId = -1
         }
         for view in self.containerView.subviews {
@@ -473,9 +504,19 @@ import Foundation
 
 }
 
+// MARK: UIColor extension
+
 public extension UIColor {
+
+    /**
+     Parse a hex string for its `ARGB` components and return a `UIColor` instance
+
+     - parameter colorString: A string representing the color hex to be parsed
+     - returns: A UIColor instance containing the parsed color
+     */
     public static func colorFromHexString(colorString: String) -> UIColor {
-        let hex = colorString.stringByTrimmingCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet)
+        let hex = colorString.stringByTrimmingCharactersInSet(
+            NSCharacterSet.alphanumericCharacterSet().invertedSet)
         var int = UInt32()
         NSScanner(string: hex).scanHexInt(&int)
         let a, r, g, b: UInt32
@@ -489,6 +530,10 @@ public extension UIColor {
         default:
             return UIColor.clearColor()
         }
-        return UIColor(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+        return UIColor(
+            red: CGFloat(r) / 255,
+            green: CGFloat(g) / 255,
+            blue: CGFloat(b) / 255,
+            alpha: CGFloat(a) / 255)
     }
 }
