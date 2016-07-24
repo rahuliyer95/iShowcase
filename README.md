@@ -26,7 +26,7 @@ or
 ### Swift
   * Add `iShowcase.swift` file to your project
 
-## [Documentation](http://rahuliyer95.github.io/iShowcase/docs)
+## [Documentation](http://rahuliyer95.github.io/iShowcase/)
 
 ## Usage
 
