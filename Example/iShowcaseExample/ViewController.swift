@@ -31,6 +31,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         super.didReceiveMemoryWarning()
     }
 
+    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        UIView.animateWithDuration(duration) {
+            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                if let showcase = self.showcase {
+                    showcase.setNeedsLayout() // Explicit calling needed for iPad
+                }
+            }
+        }
+    }
+
     @IBAction func barButtonClick(sender: UIBarButtonItem) {
         showcase.titleLabel.text = "Bar Button Example"
         showcase.detailsLabel.text = "This example highlights the Bar Button Item"
@@ -58,32 +68,31 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     }
 
     @IBAction func customShowcaseClick(sender: UIButton) {
-        let customShowcase = iShowcase()
         if backgroundColor.text?.characters.count > 0 {
-            customShowcase.coverColor = UIColor.colorFromHexString(backgroundColor.text!)
+            showcase.coverColor = UIColor.colorFromHexString(backgroundColor.text!)
         }
 
         if titleColor.text?.characters.count > 0 {
-            customShowcase.titleLabel.textColor = UIColor.colorFromHexString(titleColor.text!)
+            showcase.titleLabel.textColor = UIColor.colorFromHexString(titleColor.text!)
         }
 
         if detailsColor.text?.characters.count > 0 {
-            customShowcase.detailsLabel.textColor = UIColor.colorFromHexString(detailsColor.text!)
+            showcase.detailsLabel.textColor = UIColor.colorFromHexString(detailsColor.text!)
         }
 
         if highlightColor.text?.characters.count > 0 {
-            customShowcase.highlightColor = UIColor.colorFromHexString(highlightColor.text!)
+            showcase.highlightColor = UIColor.colorFromHexString(highlightColor.text!)
         }
 
         custom = true
-        customShowcase.type = .CIRCLE
-        customShowcase.titleLabel.text = "Custom"
-        customShowcase.detailsLabel.text = "This is custom iShowcase"
-        customShowcase.setupShowcaseForView(sender)
+        showcase.type = .CIRCLE
+        showcase.titleLabel.text = "Custom"
+        showcase.detailsLabel.text = "This is custom iShowcase"
+        showcase.setupShowcaseForView(sender)
 
         // Uncomment this to show the showcase only once after 1st run
-        // customShowcase.singleShotId = 47
-        customShowcase.show()
+        // showcase.singleShotId = 47
+        showcase.show()
 
     }
 
@@ -135,6 +144,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
 
         if custom {
+            setupShowcase()
             custom = false
         }
     }
