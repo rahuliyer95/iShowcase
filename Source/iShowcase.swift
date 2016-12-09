@@ -349,8 +349,8 @@ import Foundation
     }
 
     fileprivate func setupText() {
-        titleLabel.bounds.size = containerView.bounds.size
-        detailsLabel.bounds.size = containerView.bounds.size
+        titleLabel.frame = containerView.frame
+        detailsLabel.frame = containerView.frame
         
         titleLabel.sizeToFit()
         detailsLabel.sizeToFit()
@@ -374,15 +374,16 @@ import Foundation
                     ? showcaseRect.size.width
                     : 0),
             height: titleLabel.frame.size.height)
-
+        titleLabel.sizeToFit()
+        
         detailsLabel.frame = CGRect(
             x: containerView.bounds.size.width / 2.0 - detailsLabel.frame.size.width / 2.0,
-            y: detailsLabel.frame.origin.y,
+            y: detailsLabel.frame.origin.y + titleLabel.frame.size.height / 2,
             width: detailsLabel.frame.size.width - (region == .left || region == .right
                     ? showcaseRect.size.width
                     : 0),
             height: detailsLabel.frame.size.height)
-
+        detailsLabel.sizeToFit()
     }
 
     fileprivate func getBestPositionOfTitle(withTitleSize titleSize: CGSize,
