@@ -33,12 +33,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
 
     override func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         UIView.animate(withDuration: duration, animations: {
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                if let showcase = self.showcase {
-                    showcase.setNeedsLayout() // Explicit calling needed for iPad
-                }
+            if let showcase = self.showcase {
+                showcase.setNeedsLayout()
             }
-        }) 
+        })
     }
 
     @IBAction func barButtonClick(_ sender: UIBarButtonItem) {
@@ -50,7 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
 
     @IBAction func defaultShowcaseClick(_ sender: UIButton) {
         showcase.titleLabel.text = "Default"
-        showcase.detailsLabel.text = "This is default iShowcase"
+        showcase.detailsLabel.text = "This is default iShowcase with long long long long long long long long text"
         showcase.setupShowcaseForView(sender)
         showcase.show()
     }

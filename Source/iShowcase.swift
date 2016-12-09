@@ -349,26 +349,15 @@ import Foundation
     }
 
     fileprivate func setupText() {
-        var titleSize = CGSize.zero
-        if let text = titleLabel.text {
-            titleSize = NSString(string: text).size(attributes: [
-                NSFontAttributeName: titleLabel.font
-            ])
-        } else if let attributedText = titleLabel.attributedText {
-            titleSize = attributedText.size()
-        }
-
-        var detailsSize = CGSize.zero
-        if let text = detailsLabel.text {
-            detailsSize = NSString(string: text).size(attributes: [
-                NSFontAttributeName: detailsLabel.font
-            ])
-        } else if let attributedText = detailsLabel.attributedText {
-            detailsSize = attributedText.size()
-        }
-
-        let textPosition = getBestPositionOfTitle(withTitleSize: titleSize,
-            withDetailsSize: detailsSize)
+        titleLabel.bounds.size = containerView.bounds.size
+        detailsLabel.bounds.size = containerView.bounds.size
+        
+        titleLabel.sizeToFit()
+        detailsLabel.sizeToFit()
+        
+        let textPosition = getBestPositionOfTitle(
+            withTitleSize: titleLabel.bounds.size,
+            withDetailsSize: detailsLabel.bounds.size)
 
         if region == .bottom {
             detailsLabel.frame = textPosition.0
@@ -377,9 +366,6 @@ import Foundation
             titleLabel.frame = textPosition.0
             detailsLabel.frame = textPosition.1
         }
-
-        titleLabel.sizeToFit()
-        detailsLabel.sizeToFit()
 
         titleLabel.frame = CGRect(
             x: containerView.bounds.size.width / 2.0 - titleLabel.frame.size.width / 2.0,
