@@ -83,6 +83,8 @@ import Foundation
     open var radius: Float!
     /// Single Shot ID for iShowcase
     open var singleShotId: Int64!
+    /// Hide on tapped outside the showcase spot
+    open var hideOnTouchOutside = true
     /// Delegate for handling iShowcase callbacks
     open var delegate: iShowcaseDelegate?
 
@@ -452,14 +454,21 @@ import Foundation
         return singleTap
     }
 
-    @objc internal func showcaseTapped() {
+    @objc internal func showcaseTapped(_ gestureRecognizer: UIGestureRecognizer) {
+        if !hideOnTouchOutside {
+            // only dismiss if touch is inside spot area
+            let point = gestureRecognizer.location(in: self)
+            if !showcaseRect.contains(point) {
+                return
+            }
+        }
         UIView.animate(
             withDuration: 0.5,
             animations: { () -> Void in
                 self.alpha = 0
         }, completion: { (_) -> Void in
-                self.onAnimationComplete()
-        }) 
+            self.onAnimationComplete()
+        })
     }
 
     fileprivate func onAnimationComplete() {
