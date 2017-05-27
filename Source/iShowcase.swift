@@ -306,15 +306,15 @@ import Foundation
                 context?.setShadow(offset: CGSize.zero, blur: 30, color: highlightColor.cgColor)
                 context?.setFillColor(coverColor.cgColor)
                 context?.setStrokeColor(highlightColor.cgColor)
-                context?.addArc(center: center, radius: CGFloat(radius * 2), startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: false)
+                context?.addArc(center: center, radius: CGFloat(radius * 2), startAngle: 0, endAngle: CGFloat(2 * Double.pi), clockwise: false)
                 context?.drawPath(using: .fillStroke)
-                context?.addArc(center: center, radius: CGFloat(radius), startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: false)
+                context?.addArc(center: center, radius: CGFloat(radius), startAngle: 0, endAngle: CGFloat(2 * Double.pi), clockwise: false)
                 context?.drawPath(using: .fillStroke)
 
                 // Clear circle
                 context?.setFillColor(UIColor.clear.cgColor)
                 context?.setBlendMode(.clear)
-                context?.addArc(center: center, radius: CGFloat(radius - 0.54), startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: false)
+                context?.addArc(center: center, radius: CGFloat(radius - 0.54), startAngle: 0, endAngle: CGFloat(2 * Double.pi), clockwise: false)
                 context?.drawPath(using: .fill)
                 context?.setBlendMode(.normal)
             }
