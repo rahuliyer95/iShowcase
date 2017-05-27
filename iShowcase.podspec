@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "iShowcase"
-  s.version          = "2.2.1"
+  s.version          = "2.2.2"
   s.summary          = "Highlight individual parts of your app iShowcase."
   s.homepage         = "https://github.com/rahuliyer95/iShowcase"
   s.screenshots      = "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/assets/1.png", "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/assets/2.png", "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/assets/3.png", "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/assets/4.png", "https://raw.githubusercontent.com/rahuliyer95/iShowcase/master/assets/5.png"
