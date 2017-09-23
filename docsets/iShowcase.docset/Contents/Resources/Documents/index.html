@@ -59,7 +59,7 @@
         <section>
           <section class="section">
             
-            <a href='#ishowcase' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='ishowcase'>iShowcase</h1>
+            <h1 id='ishowcase' class='heading'>iShowcase</h1>
 
 <p>Highlight individual parts of your application using iShowcase</p>
 
@@ -70,13 +70,13 @@
 <a href="http://www.github.com/rahuliyer95/iShowcase/issues?state=open"><img src="https://img.shields.io/github/issues/rahuliyer95/iShowcase.svg?style=flat" alt="Issues"></a></p>
 
 <p><img src="assets/1.png" alt="1"></p>
-<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
+<h2 id='requirements' class='heading'>Requirements</h2>
 
 <ul>
 <li>iOS 7.0 or higher</li>
 <li>ARC</li>
 </ul>
-<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+<h2 id='installation' class='heading'>Installation</h2>
 
 <p>iShowcase is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
 it, simply add the following line to your Podfile:</p>
@@ -84,27 +84,27 @@ it, simply add the following line to your Podfile:</p>
 </code></pre>
 
 <p>or</p>
-<a href='#swift' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='swift'>Swift</h3>
+<h3 id='swift' class='heading'>Swift</h3>
 
 <ul>
 <li>Add <code>iShowcase.swift</code> file to your project</li>
 </ul>
-<a href='#a-href-http-rahuliyer95-github-io-ishowcase-documentation-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='a-href-http-rahuliyer95-github-io-ishowcase-documentation-a'><a href="http://rahuliyer95.github.io/iShowcase/">Documentation</a></h2>
-<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+<h2 id='a-href-http-rahuliyer95-github-io-ishowcase-documentation-a' class='heading'><a href="http://rahuliyer95.github.io/iShowcase/">Documentation</a></h2>
+<h2 id='usage' class='heading'>Usage</h2>
 
 <p>To run the example project, clone the repo, and run <code>pod install</code> from the Example directory first.</p>
-<a href='#creating-instance' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='creating-instance'>Creating Instance</h4>
+<h4 id='creating-instance' class='heading'>Creating Instance</h4>
 <pre class="highlight swift"><code><span class="c1">// Create Object of iShowcase</span>
 <span class="k">let</span> <span class="nv">showcase</span> <span class="o">=</span> <span class="nf">iShowcase</span><span class="p">()</span>
 </code></pre>
-<a href='#delegate' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='delegate'>Delegate</h4>
+<h4 id='delegate' class='heading'>Delegate</h4>
 <pre class="highlight swift"><code><span class="n">showcase</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span><span class="p">;</span>
 </code></pre>
-<a href='#delegate-methods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='delegate-methods'>Delegate Methods</h4>
+<h4 id='delegate-methods' class='heading'>Delegate Methods</h4>
 <pre class="highlight plaintext"><code>iShowcaseShown // Called When Showcase is displayed
 iShowcaseDismissed // Called When Showcase is removed
 </code></pre>
-<a href='#displaying-ishowcase' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='displaying-ishowcase'>Displaying iShowcase</h4>
+<h4 id='displaying-ishowcase' class='heading'>Displaying iShowcase</h4>
 <pre class="highlight swift"><code><span class="n">showcase</span><span class="o">.</span><span class="nf">setupShowcaseForView</span><span class="p">(</span><span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">)</span>
 <span class="n">showcase</span><span class="o">.</span><span class="n">titleLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Default"</span>
 <span class="n">showcase</span><span class="o">.</span><span class="n">detailsLabel</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"This is default iShowcase!"</span>
@@ -121,7 +121,7 @@ iShowcaseDismissed // Called When Showcase is removed
 <span class="nf">setupShowcaseForTableView</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="nv">withIndexOfItem</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">andSectionOfItem</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span>
 <span class="nf">setupShowcaseForBarButtonItem</span><span class="p">(</span><span class="nv">barButtonItem</span><span class="p">:</span> <span class="kt">UIBarButtonItem</span><span class="p">)</span>
 </code></pre>
-<a href='#customizations' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='customizations'>Customizations</h4>
+<h4 id='customizations' class='heading'>Customizations</h4>
 <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">TYPE</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span>
     <span class="k">case</span> <span class="kt">CIRCLE</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">case</span> <span class="kt">RECTANGLE</span> <span class="o">=</span> <span class="mi">1</span>
@@ -135,28 +135,29 @@ iShowcaseDismissed // Called When Showcase is removed
 <span class="nv">type</span><span class="p">:</span> <span class="kt">TYPE</span>
 <span class="nv">radius</span><span class="p">:</span> <span class="kt">Float</span>
 <span class="nv">singleShotId</span><span class="p">:</span> <span class="kt">Int64</span>
+<span class="nv">hideOnTouchOutside</span><span class="p">:</span> <span class="kt">Bool</span>
 </code></pre>
-<a href='#screenshots' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='screenshots'>Screenshots</h2>
+<h2 id='screenshots' class='heading'>Screenshots</h2>
 
 <p><img src="assets/2.png" alt="2">
 <img src="assets/3.png" alt="3">
 <img src="assets/4.png" alt="4">
 <img src="assets/5.png" alt="5"></p>
-<a href='#credits' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='credits'>Credits</h2>
+<h2 id='credits' class='heading'>Credits</h2>
 
 <p>Inspired from <a href="https://github.com/amlcurran/Showcaseview">ShowcaseView</a> by <a href="https://github.com/amlcurran/">Alex Curran</a></p>
-<a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>rahuliyer95, <a href="mailto:rahuliyer573@gmail.com">rahuliyer573@gmail.com</a></p>
-<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+<h2 id='license' class='heading'>License</h2>
 
 <p>iShowcase is available under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://github.com/rahuliyer95/iShowcase" target="_blank" rel="external">rahuliyer95</a>. All rights reserved. (Last updated: 2016-07-26)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://github.com/rahuliyer95/iShowcase" target="_blank" rel="external">rahuliyer95</a>. All rights reserved. (Last updated: 2017-09-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
