@@ -88,6 +88,7 @@ highlightColor: UIColor
 type: TYPE
 radius: Float
 singleShotId: Int64
+hideOnTouchOutside: Bool
 ```
 
 ## Screenshots
