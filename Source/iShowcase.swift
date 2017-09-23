@@ -452,7 +452,7 @@ import Foundation
         return singleTap
     }
 
-    internal func showcaseTapped() {
+    @objc internal func showcaseTapped() {
         UIView.animate(
             withDuration: 0.5,
             animations: { () -> Void in
